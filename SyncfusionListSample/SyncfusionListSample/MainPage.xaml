@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:sfList="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:local="clr-namespace:SyncfusionListSample"
+             mc:Ignorable="d"
+             x:Class="SyncfusionListSample.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout
+        HorizontalOptions="Center"
+        VerticalOptions="Center">
+        <sfList:SfListView
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            SelectionMode="Single"
+            ItemsSource="{Binding Fruits}"
+            SelectionBackgroundColor="Transparent"
+            FocusBorderColor="Black">
+            <sfList:SfListView.Behaviors>
+                <behaviors:EventToCommandBehavior
+                            EventName="ItemTapped"
+                            Command="{Binding ShowFruitPriceCommand}"
+                            EventArgsParameterPath="ItemData" />
+            </sfList:SfListView.Behaviors>
+            <sfList:SfListView.ItemTemplate>
+        <DataTemplate>
+            <buttons:SfButton
+                HorizontalOptions="Center"
+                BackgroundColor="ForestGreen"
+                TextColor="WhiteSmoke"
+                Text="{Binding Name}"/>
+        </DataTemplate>
+    </sfList:SfListView.ItemTemplate>
+    <sfList:SfListView.SelectedItemTemplate>
+        <DataTemplate>
+            <buttons:SfButton
+                HorizontalOptions="Center"
+                BackgroundColor="SlateGray"
+                TextColor="WhiteSmoke"
+                Text="{Binding Name}"/>
+        </DataTemplate>
+    </sfList:SfListView.SelectedItemTemplate>
+            <!--<sfList:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Label
+                        HorizontalOptions="Center"
+                        BackgroundColor="ForestGreen"
+                        TextColor="WhiteSmoke"
+                        Text="{Binding Name}"/>
+                </DataTemplate>
+            </sfList:SfListView.ItemTemplate>
+            <sfList:SfListView.SelectedItemTemplate>
+                <DataTemplate>
+                    <Label
+                        HorizontalOptions="Center"
+                        BackgroundColor="SlateGray"
+                        TextColor="WhiteSmoke"
+                        Text="{Binding Name}"/>
+                </DataTemplate>
+            </sfList:SfListView.SelectedItemTemplate>-->
+        </sfList:SfListView>
+    </StackLayout>
+</ContentPage>
